@@ -565,7 +565,7 @@ public extension TableViewController {
         }
     }
     
-    public func moveToInputCell(after indexPath: IndexPath) {
+    func moveToInputCell(after indexPath: IndexPath) {
         
         outerLoop: for (sectionIndex, section) in data.enumerated() {
             

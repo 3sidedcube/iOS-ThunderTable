@@ -56,7 +56,7 @@ public extension UIImageView {
     }
     
     /// The size of the image that will be loaded
-    public var finalSize: CGSize {
+    var finalSize: CGSize {
         get {
             guard let sizeValue = objc_getAssociatedObject(self, &finalSizeKey) as? NSValue else { return CGSize.zero }
             return sizeValue.cgSizeValue
@@ -115,7 +115,7 @@ public extension UIImageView {
     /// - parameter imageSize:       The final image size that will be returned from the URL if known
     /// - parameter animated:        Whether the loading image should animate in when retrieved
     /// - parameter completion:      A closure which will be called upon the completed load of the image.
-    public func set(imageURL: URL?, withPlaceholder: UIImage?, imageSize: CGSize = CGSize.zero, animated: Bool = false, completion: ImageViewSetImageURLCompletion?) {
+    func set(imageURL: URL?, withPlaceholder: UIImage?, imageSize: CGSize = CGSize.zero, animated: Bool = false, completion: ImageViewSetImageURLCompletion?) {
         
         if let imageURL = imageURL {
             set(imageURLS: [imageURL], withPlaceholder: withPlaceholder, imageSize: imageSize, animated: animated, completion: completion)
@@ -131,7 +131,7 @@ public extension UIImageView {
     /// - parameter imageSize:       The size of the final image which will be loaded from the URL
     /// - parameter animated:        Whether the loading image should animate in when retrieved
     /// - parameter completion:      A closure which will be called upon the completed load of the image.
-    public func set(imageURLS: [URL]?, withPlaceholder: UIImage?, imageSize: CGSize = CGSize.zero, animated: Bool = false, completion: ImageViewSetImageURLCompletion?) {
+    func set(imageURLS: [URL]?, withPlaceholder: UIImage?, imageSize: CGSize = CGSize.zero, animated: Bool = false, completion: ImageViewSetImageURLCompletion?) {
         
         finalSize = imageSize
         cancelCurrentRequestOperations()

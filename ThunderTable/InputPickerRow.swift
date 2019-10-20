@@ -41,7 +41,7 @@ public protocol PickerRowDisplayable {
 
 public extension PickerRowDisplayable {
     
-    public var attributedTitle: NSAttributedString? { get { return nil } }
+    var attributedTitle: NSAttributedString? { get { return nil } }
 }
 
 /// A helper class for ease of use of `PickerRowDisplayable`
