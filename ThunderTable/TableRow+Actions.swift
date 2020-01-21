@@ -44,7 +44,7 @@ public enum RowActionableStyle {
 /// Call the completionHandler (iOS 11 and above) to reset the context to its normal state (e.g. when swiping, resets to unswiped state).
 /// Pass YES to the completionHandler if the action was actually performed, to show a visual indication of the successful completion (iOS 11 and above only).
 /// `view` will only be non-nil on iOS 11 and above.
-public typealias RowActionableHandler = (_ action: RowActionable, _ view: UIView?, _ callback: ((Bool) -> Void)?, _ row: Row, _ indexPath: IndexPath, _ tableView: UITableView) -> Void
+public typealias RowActionableHandler = (_ action: RowActionable, _ view: UIView?, _ callback: ((Bool) -> Void)?, _ row: AnyRow, _ indexPath: IndexPath, _ tableView: UITableView) -> Void
 
 /// A protocol which can be conformed to to provide an action upon swiping a `UITableViewCell`.
 /// In an editable table, performing a horizontal swipe in a row reveals a button to delete the row by default. This protocol lets you define one or more custom actions to display for a given row in your table. Each instance of this protocol represents a single action to perform and includes the text, formatting information, and behavior for the corresponding button.
@@ -166,7 +166,7 @@ extension SwipeActionsConfigurable {
     ///   - tableView: The table view the configuration will be used in.
     /// - Returns: A `UISwipeActionsConfiguration` to be used in the table view.
     @available(iOS 11.0, *)
-    func configurationFor(row: Row, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration {
+    func configurationFor(row: AnyRow, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration {
         
         let contextualActions = actions.map { (actionable) -> UIContextualAction in
             let contextualAction = actionable.contextualAction(with: { (action, view, handler) in
@@ -180,7 +180,7 @@ extension SwipeActionsConfigurable {
         return configuration
     }
     
-    func rowActionsFor(row: Row, in tableView: UITableView) -> [UITableViewRowAction] {
+    func rowActionsFor(row: AnyRow, in tableView: UITableView) -> [UITableViewRowAction] {
         
         let rowActions = actions.map { (actionable) -> UITableViewRowAction in
             

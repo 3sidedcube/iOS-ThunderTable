@@ -12,6 +12,12 @@ import ThunderTable
 
 extension CNContact: Row {
     
+    public var cellClass: ContactTableViewCell.Type? {
+        return ContactTableViewCell.self
+    }
+    
+    public typealias CellClass = ContactTableViewCell
+        
     public var title: String? {
         return givenName + " " + familyName
     }
@@ -28,14 +34,7 @@ extension CNContact: Row {
         set { }
     }
     
-    public var cellClass: UITableViewCell.Type? {
-        return ContactTableViewCell.self
-    }
-    
-    public func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
-        guard let contactCell = cell as? ContactTableViewCell else {
-            return
-        }
-        contactCell.cellImageView?.isHidden = image == nil
-    }
+//    public func configure(cell: ContactTableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
+//        cell.cellImageView?.isHidden = image == nil
+//    }
 }

@@ -27,7 +27,8 @@ class ViewController: TableViewController {
         
         super.viewDidLoad()
         
-        data = [basicsSection(), protocolSection(), contact1, inputSection(), customSection(), actionsSection()]
+        //TODO: Add back in!
+        data = [basicsSection(), protocolSection(), contact1, /*inputSection(),*/ customSection(), actionsSection()]
     }
     
     
@@ -60,7 +61,7 @@ class ViewController: TableViewController {
         let rightActionsRow = TableRow(title: "Swipe From Right")
         rightActionsRow.trailingSwipeActionsConfiguration = rightActionConfiguration
         
-        return TableSection(rows: [leftActionsRow, rightActionsRow], header: "Cell Actions", footer: nil, selectionHandler: nil)
+        return TableSection(rows: [leftActionsRow, rightActionsRow].map({ AnyRow($0) }), header: "Cell Actions", footer: nil, selectionHandler: nil)
     }
     
     private func basicsSection() -> TableSection {
@@ -79,7 +80,7 @@ class ViewController: TableViewController {
             self.present(alertViewController, animated: true, completion: nil)
         }
         
-        let basicsSection = TableSection(rows: [row, subtitleRow, imageRow, remoteImageRow, actionRow], header: "Header", footer: "Footer", selectionHandler: nil)
+        let basicsSection = TableSection(rows: [row, subtitleRow, imageRow, remoteImageRow, actionRow].map({ AnyRow($0) }), header: "Header", footer: "Footer", selectionHandler: nil)
         
         return basicsSection
     }
@@ -104,7 +105,7 @@ class ViewController: TableViewController {
         contact3.givenName = "Tyrion"
         contact3.familyName = contact2.familyName
         
-        return TableSection(rows: [contact1, contact2, contact3], header: "Custom Protocol Inheritance", footer: nil, selectionHandler: { (row, selected, indexPath, tableView) -> (Void) in
+        return TableSection(rows: [contact1, contact2, contact3].map({ AnyRow($0) }), header: "Custom Protocol Inheritance", footer: nil, selectionHandler: { (row, selected, indexPath, tableView) -> (Void) in
             
             switch row {
             case let contact as CNContact:
@@ -145,79 +146,81 @@ class ViewController: TableViewController {
         let subtitleStyleRow = TableRow(title: "Subtitle", subtitle: "Subtitle", image: nil, selectionHandler: nil)
         subtitleStyleRow.cellStyle = .subtitle
         
-        let customSection = TableSection(rows: [noSeparatorsRow, subtitleRow, detailRow, checkRow, value1Row, value2Row, subtitleStyleRow], header: "Custom Rows", footer: nil, selectionHandler: nil)
+        let customSection = TableSection(rows: [noSeparatorsRow, subtitleRow, detailRow, checkRow, value1Row, value2Row, subtitleStyleRow].map({ AnyRow($0) }), header: "Custom Rows", footer: nil, selectionHandler: nil)
         return customSection
     }
-    
-    private func inputSection() -> TableSection {
-        
-        let textFieldRow = InputTextFieldRow(title: "Name", placeholder: "3 Sided Cube", id: "name", required: true, keyboardType: .default, returnKeyType: .next)
-        textFieldRow.valueChangeHandler = { (value, sender) in
-            self.title = value as? String
-        }
-        let textViewRow = InputTextViewRow(title: "Description", placeholder: nil, id: "description", required: true)
-        
-        let switchRow = InputSwitchRow(title: "Switch 1", subtitle: "Default Off (required)", id: "switch1")
-        switchRow.required = true
-        
-        let switchRow2 = InputSwitchRow(title: "Switch 2", subtitle: "Default On", id: "switch2")
-        switchRow2.subtitle = "Change to on!"
-        switchRow2.value = true
-        
-        let dobRow = InputDatePickerRow(title: "Date of Birth", mode: .date, id: "dob", required: false)
-        dobRow.dateFormatter.dateFormat = "dd-MM-YYYY"
-        dobRow.maximumDate = Date()
-        dobRow.minimumDate = Date().addingTimeInterval(-18 * 365 * 24 * 60 * 60)
-        dobRow.mode = .date
-        
-        let date = Date(timeIntervalSince1970: 743706458)
-        dobRow.value = date
-        
-        let countdownRow = InputDatePickerRow(title: "Timer", mode: .countDownTimer, id: "timer", required: false)
-        
-        let timeOfDayRow = InputDatePickerRow(title: "Bedtime", mode: .time, id: "bedtime", required: false)
-        
-        let viewInputRow = TableRow(title: "View Inputted Values")
-        viewInputRow.selectionHandler = { (row, selected, indexPath, tableView) -> (Void) in
-            
-            if let missingRows = self.missingRequiredInputRows, !missingRows.isEmpty {
-                
-                let alertViewController = UIAlertController(title: "Missing Input Values", message: "You are missing required values for: \(missingRows.map({ $0.id }))", preferredStyle: .alert)
-                alertViewController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                
-                self.present(alertViewController, animated: true, completion: nil)
-                
-            } else {
-                
-                let alertViewController = UIAlertController(title: "Inputted Values", message: "\(self.inputDictionary)", preferredStyle: .alert)
-                alertViewController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                
-                self.present(alertViewController, animated: true, completion: nil)
-            }
-        }
-        
-        let sliderRow = InputSliderRow(title: "Piece of string", minValue: 1.0, maxValue: 10.0, id: "string", required: true)
-        sliderRow.subtitle = "Enter the length"
-        let distanceFormatter = MeasurementFormatter()
-        distanceFormatter.unitStyle = .medium
-        
-        sliderRow.accessibilityValueFormatter = { value in
-            let measurement = Measurement(value: Double(value), unit: .init(symbol: "m"))
-            return distanceFormatter.string(from: measurement)
-        }
-        
-        let givenNameCompnent = PickerComponent(items: ["John", "Cersei", "Tyrion"])
-        let familyNameComponent = PickerComponent(items: ["Lannister", "Greyjoy", "Snow"])
-        
-        let inputPickerRow = InputPickerRow(title: "Pick Me!", components: [givenNameCompnent, familyNameComponent], formatter: { (value) -> String in
-            guard let stringValues = value as? [String] else { return "" }
-            return stringValues.joined(separator: " ")
-        }, id: "name_components", required: false)
-        
-        let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, sliderRow, viewInputRow, inputPickerRow], header: "Input Rows", footer: nil, selectionHandler: nil)
-        
-        return inputSection
-    }
+  
+    //TODO: Add back in!
+//    private func inputSection() -> TableSection {
+//
+//        let textFieldRow = InputTextFieldRow(title: "Name", placeholder: "3 Sided Cube", id: "name", required: true, keyboardType: .default, returnKeyType: .next)
+//        textFieldRow.valueChangeHandler = { (value, sender) in
+//            self.title = value as? String
+//        }
+//        let textViewRow = InputTextViewRow(title: "Description", placeholder: nil, id: "description", required: true)
+//
+//        let switchRow = InputSwitchRow(title: "Switch 1", subtitle: "Default Off (required)", id: "switch1")
+//        switchRow.required = true
+//
+//        let switchRow2 = InputSwitchRow(title: "Switch 2", subtitle: "Default On", id: "switch2")
+//        switchRow2.subtitle = "Change to on!"
+//        switchRow2.value = true
+//
+//        let dobRow = InputDatePickerRow(title: "Date of Birth", mode: .date, id: "dob", required: false)
+//        dobRow.dateFormatter.dateFormat = "dd-MM-YYYY"
+//        dobRow.maximumDate = Date()
+//        dobRow.minimumDate = Date().addingTimeInterval(-18 * 365 * 24 * 60 * 60)
+//        dobRow.mode = .date
+//
+//        let date = Date(timeIntervalSince1970: 743706458)
+//        dobRow.value = date
+//
+//        let countdownRow = InputDatePickerRow(title: "Timer", mode: .countDownTimer, id: "timer", required: false)
+//
+//        let timeOfDayRow = InputDatePickerRow(title: "Bedtime", mode: .time, id: "bedtime", required: false)
+//
+//        let viewInputRow = TableRow(title: "View Inputted Values")
+//        viewInputRow.selectionHandler = { (row, selected, indexPath, tableView) -> (Void) in
+//
+//            //TODO: Add back in
+////            if let missingRows = self.missingRequiredInputRows, !missingRows.isEmpty {
+////
+////                let alertViewController = UIAlertController(title: "Missing Input Values", message: "You are missing required values for: \(missingRows.map({ $0.id }))", preferredStyle: .alert)
+////                alertViewController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+////
+////                self.present(alertViewController, animated: true, completion: nil)
+////
+////            } else {
+////
+////                let alertViewController = UIAlertController(title: "Inputted Values", message: "\(self.inputDictionary)", preferredStyle: .alert)
+////                alertViewController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+////
+////                self.present(alertViewController, animated: true, completion: nil)
+////            }
+//        }
+//
+//        let sliderRow = InputSliderRow(title: "Piece of string", minValue: 1.0, maxValue: 10.0, id: "string", required: true)
+//        sliderRow.subtitle = "Enter the length"
+//        let distanceFormatter = MeasurementFormatter()
+//        distanceFormatter.unitStyle = .medium
+//
+//        sliderRow.accessibilityValueFormatter = { value in
+//            let measurement = Measurement(value: Double(value), unit: .init(symbol: "m"))
+//            return distanceFormatter.string(from: measurement)
+//        }
+//
+//        let givenNameCompnent = PickerComponent(items: ["John", "Cersei", "Tyrion"])
+//        let familyNameComponent = PickerComponent(items: ["Lannister", "Greyjoy", "Snow"])
+//
+//        let inputPickerRow = InputPickerRow(title: "Pick Me!", components: [givenNameCompnent, familyNameComponent], formatter: { (value) -> String in
+//            guard let stringValues = value as? [String] else { return "" }
+//            return stringValues.joined(separator: " ")
+//        }, id: "name_components", required: false)
+//
+//        let inputSection = TableSection(rows: [textFieldRow, textViewRow, switchRow, switchRow2, dobRow, countdownRow, timeOfDayRow, sliderRow, viewInputRow, inputPickerRow].map({ AnyRow($0) }), header: "Input Rows", footer: nil, selectionHandler: nil)
+//
+//        return inputSection
+//    }
 }
 
 extension ViewController: CNContactViewControllerDelegate {

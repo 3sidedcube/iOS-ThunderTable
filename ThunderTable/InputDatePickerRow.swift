@@ -60,7 +60,12 @@ open class InputDatePickerRow: InputTableRow {
 	}
 	
 	open override var cellClass: UITableViewCell.Type? {
-		return InputDatePickerViewCell.self
+        get {
+            return InputDatePickerViewCell.self
+        }
+        set {
+            
+        }
 	}
 	
 	open override func configure(cell: UITableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {

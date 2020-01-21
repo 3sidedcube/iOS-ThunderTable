@@ -20,11 +20,11 @@ extension CNContact: Section {
         return nil
     }
     
-    public var rows: [Row] {
+    public var rows: [AnyRow] {
         
-        let _rows: [Row] = [
-            TableRow(title: CNContact.localizedString(forKey: CNContactGivenNameKey), subtitle: givenName, image: nil, selectionHandler: nil),
-            TableRow(title: CNContact.localizedString(forKey: CNContactFamilyNameKey), subtitle: familyName, image: nil, selectionHandler: nil)
+        let _rows: [AnyRow] = [
+            AnyRow(TableRow(title: CNContact.localizedString(forKey: CNContactGivenNameKey), subtitle: givenName, image: nil, selectionHandler: nil)),
+            AnyRow(TableRow(title: CNContact.localizedString(forKey: CNContactFamilyNameKey), subtitle: familyName, image: nil, selectionHandler: nil))
         ]
         
         return _rows

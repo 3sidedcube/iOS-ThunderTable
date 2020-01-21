@@ -9,6 +9,6 @@
 import UIKit
 import ThunderTable
 
-class ContactTableViewCell: TableViewCell {
+public class ContactTableViewCell: TableViewCell {
     
 }

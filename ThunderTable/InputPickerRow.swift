@@ -68,6 +68,8 @@ open class PickerRow: PickerRowDisplayable {
 /// to select from a set of defined options
 open class InputPickerRow: InputTableRow {
     
+    public typealias CellClass = InputPickerViewCell
+    
     /// The components to display in the picker
     open var components: [PickerComponentDisplayable]
     
@@ -90,7 +92,10 @@ open class InputPickerRow: InputTableRow {
     }
     
     open override var cellClass: UITableViewCell.Type? {
-        return InputPickerViewCell.self
+        get {
+            return InputPickerViewCell.self
+        }
+        set { }
     }
     
     private var cellTextField: UITextField?

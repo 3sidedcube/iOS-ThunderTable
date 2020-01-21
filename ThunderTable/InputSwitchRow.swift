@@ -18,9 +18,14 @@ open class InputSwitchRow: InputTableRow {
     /// Defines whether to group the label and switch as a single accessibility element
     /// - Note: Defaults to true!
     public var accessibilityGroupLabelsAndSwitch: Bool = true
-
-    override open var cellClass: UITableViewCell.Type? {
-        return InputSwitchViewCell.self
+    
+    public typealias CellClass = InputSwitchViewCell
+    
+    public override var cellClass: UITableViewCell.Type? {
+        get {
+            return InputSwitchViewCell.self
+        }
+        set { }
     }
     
     public init(title: String?, subtitle: String?, id: String, image: UIImage? = nil) {

@@ -8,21 +8,21 @@
 
 import UIKit
 
-public typealias SelectionHandler = (_ row: Row, _ selected: Bool, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
+public typealias AnySelectionHandler = (_ row: AnyRow, _ selected: Bool, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
 
-public typealias EditHandler = (_ row: Row, _ editingStyle: UITableViewCell.EditingStyle, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
+public typealias AnyEditHandler = (_ row: AnyRow, _ editingStyle: UITableViewCell.EditingStyle, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void)
 
 public protocol Section {
     
-    var rows: [Row] { get }
+    var rows: [AnyRow] { get }
     
     var header: String? { get }
     
     var footer: String? { get }
     
-    var editHandler: EditHandler? { get }
+    var editHandler: AnyEditHandler? { get }
     
-    var selectionHandler: SelectionHandler? { get }
+    var selectionHandler: AnySelectionHandler? { get }
     
     var rowLeadingSwipeActionsConfiguration: SwipeActionsConfigurable? { get }
     
@@ -31,7 +31,7 @@ public protocol Section {
 
 public extension Section {
     
-    var rows: [Row] {
+    var rows: [AnyRow] {
         return []
     }
     
@@ -54,17 +54,17 @@ open class TableSection: Section {
     
     open var footer: String?
     
-    open var rows: [Row]
+    open var rows: [AnyRow]
     
-    open var selectionHandler: SelectionHandler?
+    open var selectionHandler: AnySelectionHandler?
     
-    open var editHandler: EditHandler?
+    open var editHandler: AnyEditHandler?
     
     open var rowLeadingSwipeActionsConfiguration: SwipeActionsConfigurable?
     
     open var rowTrailingSwipeActionsConfiguration: SwipeActionsConfigurable?
     
-    public init(rows: [Row], header: String? = nil, footer: String? = nil, selectionHandler: SelectionHandler? = nil) {
+    public init(rows: [AnyRow], header: String? = nil, footer: String? = nil, selectionHandler: AnySelectionHandler? = nil) {
         
         self.rows = rows
         self.header = header
@@ -78,7 +78,7 @@ open class TableSection: Section {
     ///   - rows: The rows to sort into alphabetised sections
     ///   - selectionHandler: A selection handler to add to the sections
     /// - Returns: An array of `TableSection` objects
-    public class func sortedSections(with rows: [Row], selectionHandler: SelectionHandler? = nil) -> [TableSection] {
+    public class func sortedSections(with rows: [AnyRow], selectionHandler: AnySelectionHandler? = nil) -> [TableSection] {
         
         let sortedAlphabetically = self.alphabeticallySort(rows: rows)
         let sortedKeys = sortedAlphabetically.keys.sorted { (stringA, stringB) -> Bool in
@@ -91,9 +91,9 @@ open class TableSection: Section {
         })
     }
     
-    private class func alphabeticallySort(rows: [Row]) -> [String : [Row]] {
+    private class func alphabeticallySort(rows: [AnyRow]) -> [String : [AnyRow]] {
         
-        var sortedDict = [String : [Row]]()
+        var sortedDict = [String : [AnyRow]]()
         
         rows.forEach { (row) in
             

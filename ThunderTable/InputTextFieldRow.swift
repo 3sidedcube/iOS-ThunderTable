@@ -11,6 +11,8 @@ import UIKit
 public typealias ValidCharacterHandler = (_ string: String) -> Bool
 
 open class InputTextFieldRow: InputTableRow {
+    
+    public typealias CellClass = InputTextFieldViewCell
 
     open var placeholder: String?
     
@@ -25,10 +27,6 @@ open class InputTextFieldRow: InputTableRow {
     open var autocorrectionType: UITextAutocorrectionType = .default
     
     open var autocapitalizationType: UITextAutocapitalizationType = .none
-    
-    override open var cellClass: UITableViewCell.Type? {
-        return InputTextFieldViewCell.self
-    }
     
     public init(title: String?, placeholder: String?, id: String, required: Bool, keyboardType: UIKeyboardType = .default, returnKeyType: UIReturnKeyType = .default) {
         

@@ -53,7 +53,7 @@ extension UITableViewCell.AccessoryType {
     }
 }
 
-extension Row {
+extension AnyRow {
     
     /// Returns a nib for the row's cell class if one exists in the bundle for the class
     var nib: UINib? {
@@ -123,8 +123,8 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
 	
 	public var selectedIndexPath: IndexPath?
 	
-	public var selectedRows: [Row]? {
-		return tableView.indexPathsForSelectedRows?.compactMap({ (indexPath) -> Row? in
+	public var selectedRows: [AnyRow]? {
+		return tableView.indexPathsForSelectedRows?.compactMap({ (indexPath) -> AnyRow? in
             return self[row: indexPath]
 		})
 	}
@@ -209,27 +209,29 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         
     }
     
-    public var inputDictionary: [String: Any] {
-        
-        guard let inputRows = _data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return [:] }
-        
-        var dictionary: [String: Any] = [:]
-        
-        inputRows.forEach { (row) in
-            dictionary[row.id] = row.value
-        }
-        
-        return dictionary
-    }
+    //TODO: Add back in!
+//    public var inputDictionary: [String: Any] {
+//
+//        guard let inputRows = _data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return [:] }
+//
+//        var dictionary: [String: Any] = [:]
+//
+//        inputRows.forEach { (row) in
+//            dictionary[row.id] = row.value
+//        }
+//
+//        return dictionary
+//    }
 	
-	public var missingRequiredInputRows: [InputRow]? {
-		
-		guard let inputRows = _data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return nil }
-		
-		return inputRows.filter({ (inputRow) -> Bool in
-			return inputRow.required && inputRow.value == nil
-		})
-	}
+    //TODO: Add back in!
+//	public var missingRequiredInputRows: [InputRow]? {
+//
+//		guard let inputRows = _data.flatMap({ $0.rows.filter({ $0 as? InputRow != nil }) }) as? [InputRow] else { return nil }
+//
+//		return inputRows.filter({ (inputRow) -> Bool in
+//			return inputRow.required && inputRow.value == nil
+//		})
+//	}
 	
     private var registeredClasses: [String] = []
 
@@ -246,7 +248,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         })
     }
     
-    open func configure(cell: UITableViewCell, with row: Row, at indexPath: IndexPath) {
+    open func configure(cell: UITableViewCell, with row: AnyRow, at indexPath: IndexPath) {
         
         var _row = row
         var textLabel = cell.textLabel
@@ -311,7 +313,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         }
         
         imageView?.set(imageURL: row.imageURL, withPlaceholder: row.image, imageSize: size, animated: true, completion: { [weak self] (image, error) -> (Void) in
-            
+
             if let welf = self, _row.image == nil {
                 _row.image = image
                 welf.tableView.reloadRows(at: [indexPath], with: .none)
@@ -324,7 +326,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         row.configure(cell: cell, at: indexPath, in: self)
     }
     
-    private func register(row: Row) {
+    private func register(row: AnyRow) {
         
         guard let identifier = row.identifier else { return }
         
@@ -608,7 +610,8 @@ public extension TableViewController {
 	
     internal func selectable(_ indexPath: IndexPath) -> Bool {
         guard let (section, row) = self[indexPath] else { return false }
-        return row.selectionHandler != nil || section.selectionHandler != nil || (row as? InputRow) != nil
+        //TODO: Add back in InputRow
+        return row.selectionHandler != nil || section.selectionHandler != nil/* || (row as? InputRow) != nil*/
     }
     
     internal func set(indexPath: IndexPath, selected: Bool) {
@@ -629,30 +632,32 @@ public extension TableViewController {
 			selectedIndexPath = indexPath
 		}
 			
-        if row is InputRow, selected {
-            let cell = tableView.cellForRow(at: indexPath)
-            cell?.becomeFirstResponder()
-        }
+        //TODO: Add back in
+//        if row is InputRow, selected {
+//            let cell = tableView.cellForRow(at: indexPath)
+//            cell?.becomeFirstResponder()
+//        }
     }
     
     func moveToInputCell(after indexPath: IndexPath) {
         
-        outerLoop: for (sectionIndex, section) in data.enumerated() {
-            
-            if sectionIndex >= indexPath.section {
-                
-                for (rowIndex, row) in section.rows.enumerated() {
-                    
-                    if row is InputRow, rowIndex > indexPath.row {
-                        
-                        let indexPath = IndexPath(row: rowIndex, section: sectionIndex)
-                        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                        set(indexPath: indexPath, selected: true)
-                        
-                        break outerLoop
-                    }
-                }
-            }
-        }
+        //TODO: Add back in
+//        outerLoop: for (sectionIndex, section) in data.enumerated() {
+//
+//            if sectionIndex >= indexPath.section {
+//
+//                for (rowIndex, row) in section.rows.enumerated() {
+//
+//                    if row is InputRow, rowIndex > indexPath.row {
+//
+//                        let indexPath = IndexPath(row: rowIndex, section: sectionIndex)
+//                        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+//                        set(indexPath: indexPath, selected: true)
+//
+//                        break outerLoop
+//                    }
+//                }
+//            }
+//        }
     }
 }

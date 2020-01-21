@@ -16,8 +16,15 @@ import UIKit
 /// This means `sender.value !== value` in that closure!
 open class InputSliderRow: InputTableRow {
     
+    public typealias CellClass = InputSliderViewCell
+    
     override open var cellClass: UITableViewCell.Type? {
-        return InputSliderViewCell.self
+        get {
+            return InputSliderViewCell.self
+        }
+        set {
+            
+        }
     }
     
     // Defines whether to group the label and slider as a single accessibility element
