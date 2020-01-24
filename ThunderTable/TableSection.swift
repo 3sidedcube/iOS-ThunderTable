@@ -146,7 +146,7 @@ open class TableSection: Section {
     
     @available(iOS 13.0, *)
     /// Provides a callback which can create a `UIContextMenuConfiguration` to avoid the need to subclass `TableRow` to implement `contextMenuConfiguration`
-    public var contextMenuContentProvider: ContextMenuConfigurationProvider? {
+    public var contextMenuConfigurationProvider: ContextMenuConfigurationProvider? {
         get {
             return _contextMenuContentProvider as? ContextMenuConfigurationProvider
         }
@@ -169,17 +169,17 @@ open class TableSection: Section {
     }
     
     @available(iOS 13.0, *)
-    public func contextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in tableView: UITableView) -> UIContextMenuConfiguration? {
-        return contextMenuContentProvider?(point, indexPath, tableView)
+    public func sectionContextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in tableView: UITableView) -> UIContextMenuConfiguration? {
+        return contextMenuConfigurationProvider?(point, indexPath, tableView)
     }
     
     @available(iOS 13.0, *)
-    public func previewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview? {
+    public func sectionPreviewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview? {
         return contextMenuPreviewProvider?(configuration, false, indexPath, tableView)
     }
     
     @available(iOS 13.0, *)
-    public func previewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview? {
+    public func sectionPreviewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview? {
         return contextMenuPreviewProvider?(configuration, true, indexPath, tableView)
     }
 }

@@ -383,7 +383,7 @@ open class TableRow: Row {
     
     @available(iOS 13.0, *)
     /// Provides a callback which can create a `UIContextMenuConfiguration` to avoid the need to subclass `TableRow` to implement `contextMenuConfiguration`
-    public var contextMenuContentProvider: ContextMenuConfigurationProvider? {
+    public var contextMenuConfigurationProvider: ContextMenuConfigurationProvider? {
         get {
             return _contextMenuContentProvider as? ContextMenuConfigurationProvider
         }
@@ -407,7 +407,7 @@ open class TableRow: Row {
         
     @available(iOS 13.0, *)
     public func contextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in tableView: UITableView) -> UIContextMenuConfiguration? {
-        return contextMenuContentProvider?(point, indexPath, tableView)
+        return contextMenuConfigurationProvider?(point, indexPath, tableView)
     }
     
     @available(iOS 13.0, *)
