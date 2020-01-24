@@ -564,7 +564,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     @available(iOS 13.0, *)
     open override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard let (section, row) = self[indexPath] else { return nil }
-        let configuration = row.contextMenuConfiguration(at: point, for: indexPath, in: tableView) ?? section.contextMenuConfiguration(at: point, for: indexPath, in: tableView)
+        let configuration = row.contextMenuConfiguration(at: point, for: indexPath, in: tableView) ?? section.sectionContextMenuConfiguration(at: point, for: indexPath, in: tableView)
         _contextMenuIndexPathMap[indexPath] = configuration
         return configuration
     }
@@ -576,7 +576,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             return value == configuration
         })?.key else { return nil }
         guard let (section, row) = self[indexPath] else { return nil }
-        return row.previewForDismissingContextMenu(with: configuration, at: indexPath, in: tableView) ?? section.previewForDismissingContextMenu(with: configuration, at: indexPath, in: tableView)
+        return row.previewForDismissingContextMenu(with: configuration, at: indexPath, in: tableView) ?? section.sectionPreviewForDismissingContextMenu(with: configuration, at: indexPath, in: tableView)
     }
     
     @available(iOS 13.0, *)
@@ -586,7 +586,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             return value == configuration
         })?.key else { return nil }
         guard let (section, row) = self[indexPath] else { return nil }
-        return row.previewForHighlightingContextMenu(with: configuration, at: indexPath, in: tableView) ?? section.previewForHighlightingContextMenu(with: configuration, at: indexPath, in: tableView)
+        return row.previewForHighlightingContextMenu(with: configuration, at: indexPath, in: tableView) ?? section.sectionPreviewForHighlightingContextMenu(with: configuration, at: indexPath, in: tableView)
     }
 	
 	//MARK - variable header/footer size

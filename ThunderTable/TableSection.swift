@@ -34,7 +34,7 @@ public protocol Section {
     ///   - indexPath: The index path the context menu will be displayed for
     ///   - tableView: The table view that the context menu will be shown within
     @available(iOS 13.0, *)
-    func contextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in tableView: UITableView) -> UIContextMenuConfiguration?
+    func sectionContextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in tableView: UITableView) -> UIContextMenuConfiguration?
     
     /// A function which can be used to provide the view for dismissing a given context menu
     /// - Parameters:
@@ -42,7 +42,7 @@ public protocol Section {
     ///   - indexPath: The index path the context menu is being displayed for
     ///   - tableView: The table view that the context menu is being dismissed in
     @available(iOS 13.0, *)
-    func previewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview?
+    func sectionPreviewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview?
     
     /// A function which can be used to provide the view for highlighting a given context menu
     /// - Parameters:
@@ -50,7 +50,7 @@ public protocol Section {
     ///   - indexPath: The index path the context menu is being displayed for
     ///   - tableView: The table view that the context menu is being highlighted in
     @available(iOS 13.0, *)
-    func previewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview?
+    func sectionPreviewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview?
 }
 
 public extension Section {
@@ -72,13 +72,13 @@ public extension Section {
     var rowTrailingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
     
     @available(iOS 13.0, *)
-    func contextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in tableView: UITableView) -> UIContextMenuConfiguration? { return nil }
+    func sectionContextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in tableView: UITableView) -> UIContextMenuConfiguration? { return nil }
     
     @available(iOS 13.0, *)
-    func previewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview? { return nil }
+    func sectionPreviewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview? { return nil }
     
     @available(iOS 13.0, *)
-    func previewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview? { return nil }
+    func sectionPreviewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in tableView: UITableView) -> UITargetedPreview? { return nil }
 }
 
 open class TableSection: Section {
