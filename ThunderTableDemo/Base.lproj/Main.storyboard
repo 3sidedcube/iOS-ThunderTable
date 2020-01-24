@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Niu-Rh-0Kz">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Niu-Rh-0Kz">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +18,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="prototypeCell" id="HRw-UY-KPj">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HRw-UY-KPj" id="ZgE-CM-Wk8">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -38,12 +37,51 @@
             </objects>
             <point key="canvasLocation" x="207" y="54"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="4jR-mQ-w0U">
+            <objects>
+                <viewController storyboardIdentifier="sunrise" id="1XG-VO-sMw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8nE-AA-Wi0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4E1-KO-Y9m">
+                                <rect key="frame" x="123" y="264" width="129" height="139.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-rise-lg" translatesAutoresizingMaskIntoConstraints="NO" id="58N-40-W7u">
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="96"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUNRISE!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wx0-vM-Dbb">
+                                        <rect key="frame" x="0.0" y="106" width="129" height="33.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4E1-KO-Y9m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aCZ-bN-3IZ" secondAttribute="leading" constant="12" id="5rq-Yf-hDz"/>
+                            <constraint firstItem="4E1-KO-Y9m" firstAttribute="centerY" secondItem="aCZ-bN-3IZ" secondAttribute="centerY" id="NNT-9a-YF5"/>
+                            <constraint firstItem="aCZ-bN-3IZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4E1-KO-Y9m" secondAttribute="trailing" constant="12" id="Wyq-L7-Hhb"/>
+                            <constraint firstItem="4E1-KO-Y9m" firstAttribute="top" relation="greaterThanOrEqual" secondItem="aCZ-bN-3IZ" secondAttribute="top" constant="12" id="YXB-bN-PGs"/>
+                            <constraint firstItem="4E1-KO-Y9m" firstAttribute="centerX" secondItem="aCZ-bN-3IZ" secondAttribute="centerX" id="brc-jB-xfU"/>
+                            <constraint firstItem="aCZ-bN-3IZ" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4E1-KO-Y9m" secondAttribute="bottom" constant="12" id="bsE-FS-iDM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aCZ-bN-3IZ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rQR-Am-ceZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="54"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="kCs-K7-Eva">
             <objects>
                 <navigationController id="Niu-Rh-0Kz" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Fq-Xd-QoD">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -55,4 +93,7 @@
             <point key="canvasLocation" x="-593" y="54"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-rise-lg" width="96" height="96"/>
+    </resources>
 </document>

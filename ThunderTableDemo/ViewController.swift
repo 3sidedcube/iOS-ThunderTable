@@ -27,10 +27,63 @@ class ViewController: TableViewController {
         
         super.viewDidLoad()
         
-        data = [basicsSection(), protocolSection(), contact1, inputSection(), customSection(), actionsSection()]
+        data = [basicsSection(), protocolSection(), contact1, inputSection(), customSection(), actionsSection(), contextMenuSection()].reversed()
     }
     
-    
+    private func contextMenuSection() -> TableSection {
+        
+        let row1 = TableRow(title: "Sunrise", subtitle: "Press and hold for actions", image: #imageLiteral(resourceName: "icon-rise"), selectionHandler: nil)
+        if #available(iOS 13.0, *) {
+            row1.contextMenuPreviewProvider = { (configuration, appearing, indexPath, tableView) -> UITargetedPreview? in
+                
+                guard let cell = tableView.cellForRow(at: indexPath) as? TableViewCell, let imageView = cell.cellImageView else { return nil }
+                
+                // Set parameters to a circular mask and clear background
+                let parameters = UIPreviewParameters()
+                parameters.backgroundColor = .white
+                parameters.visiblePath = UIBezierPath(ovalIn: imageView.bounds)
+
+                // Return a targeted preview using our cell previewView and parameters
+                return UITargetedPreview(view: imageView, parameters: parameters)
+            }
+        }
+        
+        let row2 = TableRow(title: "Sunset", subtitle: "Press and hold for actions", image: #imageLiteral(resourceName: "icon-set"), selectionHandler: nil)
+        
+        let row3 = TableRow(title: "Sun Up", subtitle: "Press and hold for actions", image: #imageLiteral(resourceName: "icon-full"), selectionHandler: nil)
+        if #available(iOS 13.0, *) {
+            row3.contextMenuConfigurationProvider = { (point, indexPath, tableView) -> UIContextMenuConfiguration? in
+                return UIContextMenuConfiguration(identifier: nil, previewProvider: { () -> UIViewController? in
+                    
+                    return self.storyboard?.instantiateViewController(identifier: "sunrise")
+                    
+                }) { (menuElements) -> UIMenu? in
+                   let children = UIAction(title: "Add to calendar") { (_) in
+                       let alertController = UIAlertController(title: "Added!", message: "We totally added that to your calendar...", preferredStyle: .alert)
+                       alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                       self.present(alertController, animated: true, completion: nil)
+                   }
+                   return UIMenu(title: "Edit", children: [children])
+               }
+            }
+        }
+        
+        let section = TableSection(rows: [row1, row2, row3])
+        if #available(iOS 13.0, *) {
+            section.contextMenuConfigurationProvider = { (point, indexPath, tableView) -> UIContextMenuConfiguration? in
+                return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (menuElements) -> UIMenu? in
+                    let children = UIAction(title: "Add to calendar") { (_) in
+                        let alertController = UIAlertController(title: "Added!", message: "We totally added that to your calendar...", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                    return UIMenu(title: "Edit", children: [children])
+                }
+            }
+        }
+        
+        return section
+    }
     
     private func actionsSection() -> TableSection {
         
