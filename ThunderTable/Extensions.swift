@@ -60,10 +60,7 @@ extension Double: PickerRowDisplayable {
 
 extension String : Row {
     
-    public var selectionHandler: (String, Bool, IndexPath, UITableView) -> (Void)? {
-        return nil
-    }
-    
+
     public func configure(cell: TableViewCell, at indexPath: IndexPath, in tableViewController: TableViewController) {
         
     }

@@ -117,22 +117,10 @@ public struct AnyRow {
             return row.prototypeIdentifier
         }
         _selectionHandler = {
-            guard let rowSelection = row.selectionHandler else {
-                return nil
-            }
-            return { (row, selected, indexPath, tableView) in
-                guard let _row = row as? R else { return }
-                rowSelection(_row, selected, indexPath, tableView)
-            }
+            return row.selectionHandler
         }
         _editHandler = {
-            guard let rowEdit = row.editHandler else {
-                return nil
-            }
-            return { (row, selected, indexPath, tableView) in
-                guard let _row = row as? R else { return }
-                rowEdit(_row, selected, indexPath, tableView)
-            }
+            return row.editHandler
         }
         _estimatedHeight = {
             return row.estimatedHeight
@@ -372,10 +360,10 @@ public protocol Row {
     var prototypeIdentifier: String? { get }
     
     /// A closure which will be called when the row is pressed on in the table view
-    var selectionHandler: ((_ row: Self, _ selected: Bool, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void))? { get }
+    var selectionHandler: AnySelectionHandler? { get }
     
     /// A closure which will be called when the row is edited in the table view
-    var editHandler: ((_ row: Self, _ editingStyle: UITableViewCell.EditingStyle, _ indexPath: IndexPath, _ tableView: UITableView) -> (Void))? { get }
+    var editHandler: AnyEditHandler? { get }
     
     /// The estimated height of the row
     ///
@@ -485,14 +473,6 @@ extension Row {
         return nil
     }
     
-//    public var selectionHandler: SelectionHandler? {
-//        return nil
-//    }
-    
-//    public var editHandler: EditHandler? {
-//        return nil
-//    }
-    
     public var useNibSuperclass: Bool {
         return true
     }
@@ -516,14 +496,18 @@ extension Row {
     public var leadingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
     
     public var trailingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
+    
+    public var selectionHandler: AnySelectionHandler? { return nil }
+     
+    public var editHandler: AnyEditHandler? { return nil }
 }
 
 /// A base class which can be subclassed providing a template for the `Row` protocol
 open class TableRow: Row {
     
-    public var selectionHandler: ((TableRow, Bool, IndexPath, UITableView) -> (Void))?
+    public var selectionHandler: AnySelectionHandler?
     
-    public var editHandler: ((TableRow, UITableViewCell.EditingStyle, IndexPath, UITableView) -> (Void))?
+    public var editHandler: AnyEditHandler?
         
     open var cellStyle: UITableViewCell.CellStyle?
     
@@ -558,9 +542,7 @@ open class TableRow: Row {
     open var prototypeIdentifier: String? {
         return nil
     }
-    
-    open var selectionHandler: SelectionHandler?
-    
+        
     open var selectionStyle: UITableViewCell.SelectionStyle?
     
     open var accessoryType: UITableViewCell.AccessoryType?
@@ -624,7 +606,7 @@ open class TableRow: Row {
         return nil
     }
     
-    public init(title: String?, subtitle: String? = nil, image: UIImage? = nil, selectionHandler: SelectionHandler? = nil) {
+    public init(title: String?, subtitle: String? = nil, image: UIImage? = nil, selectionHandler: AnySelectionHandler? = nil) {
         
         self.title = title
         self.subtitle = subtitle

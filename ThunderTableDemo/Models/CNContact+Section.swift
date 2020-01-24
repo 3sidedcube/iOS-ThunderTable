@@ -12,11 +12,11 @@ import ThunderTable
 
 extension CNContact: Section {
     
-    public var editHandler: EditHandler? {
+    public var editHandler: AnyEditHandler? {
         return nil
     }
     
-    public var selectionHandler: SelectionHandler? {
+    public var selectionHandler: AnySelectionHandler? {
         return nil
     }
     
