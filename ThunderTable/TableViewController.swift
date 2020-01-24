@@ -576,7 +576,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             return value == configuration
         })?.key else { return nil }
         guard let (section, row) = self[indexPath] else { return nil }
-        return row.previewForDismissingContextMenu(with: configuration, in: tableView) ?? section.previewForDismissingContextMenu(with: configuration, in: tableView)
+        return row.previewForDismissingContextMenu(with: configuration, at: indexPath, in: tableView) ?? section.previewForDismissingContextMenu(with: configuration, at: indexPath, in: tableView)
     }
     
     @available(iOS 13.0, *)
@@ -586,7 +586,7 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             return value == configuration
         })?.key else { return nil }
         guard let (section, row) = self[indexPath] else { return nil }
-        return row.previewForHighlightingContextMenu(with: configuration, in: tableView) ?? section.previewForHighlightingContextMenu(with: configuration, in: tableView)
+        return row.previewForHighlightingContextMenu(with: configuration, at: indexPath, in: tableView) ?? section.previewForHighlightingContextMenu(with: configuration, at: indexPath, in: tableView)
     }
 	
 	//MARK - variable header/footer size
