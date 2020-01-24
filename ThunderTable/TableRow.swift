@@ -128,6 +128,29 @@ public protocol Row {
 	
 	/// A configuration object which allows trailing swipe actions to be attached to the row.
 	var trailingSwipeActionsConfiguration: SwipeActionsConfigurable? { get }
+    
+    //MARK: Context Menu
+    
+    /// A function which can be used to provide a `UIContextMenuConfiguration` for the row, at a given point
+    /// - Parameters:
+    ///   - point: The point within the table view that the context menu should be shown for
+    ///   - tableView: The table view that the context menu will be shown within
+    @available(iOS 13.0, *)
+    func contextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in tableView: UITableView) -> UIContextMenuConfiguration?
+    
+    /// A function which can be used to provide the view for dismissing a given context menu
+    /// - Parameters:
+    ///   - configuration: The configuration that the dismissing menu is for
+    ///   - tableView: The table view that the context menu is being dismissed in
+    @available(iOS 13.0, *)
+    func previewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, in tableView: UITableView) -> UITargetedPreview?
+    
+    /// A function which can be used to provide the view for highlighting a given context menu
+    /// - Parameters:
+    ///   - configuration: The configuration that the highlighting menu is for
+    ///   - tableView: The table view that the context menu is being highlighted in
+    @available(iOS 13.0, *)
+    func previewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, in tableView: UITableView) -> UITargetedPreview?
 }
 
 extension Row {
@@ -224,6 +247,15 @@ extension Row {
 	public var leadingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
 	
 	public var trailingSwipeActionsConfiguration: SwipeActionsConfigurable? { return nil }
+    
+    @available(iOS 13.0, *)
+    public func contextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in tableView: UITableView) -> UIContextMenuConfiguration? { return nil }
+    
+    @available(iOS 13.0, *)
+    public func previewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, in tableView: UITableView) -> UITargetedPreview? { return nil }
+    
+    @available(iOS 13.0, *)
+    public func previewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, in tableView: UITableView) -> UITargetedPreview? { return nil }
 }
 
 /// A base class which can be subclassed providing a template for the `Row` protocol
