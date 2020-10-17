@@ -24,17 +24,29 @@ open class Theme: NSObject {
     
     /// The background colour for all table view cells throughout the app
     open var cellBackgroundColor: UIColor {
-        return .white
+        if #available(iOS 13.0, *) {
+            return .secondarySystemGroupedBackground
+        } else {
+            return .white
+        }
     }
     
     /// The title colour to be used for all table view cells throughout the app
     open var cellTitleColor: UIColor {
-        return .black
+        if #available(iOS 13.0, *) {
+            return .label
+        } else {
+            return .black
+        }
     }
     
     /// The detail colour to be used for all table view cells throughout the app
     open var cellDetailColor: UIColor {
-        return .darkText
+        if #available(iOS 13.0, *) {
+            return .secondaryLabel
+        } else {
+            return .darkText
+        }
     }
     
     /// The paragraph style for cell title label
@@ -58,7 +70,11 @@ open class Theme: NSObject {
     
     /// The colour of header text in the app
     open var headerTextColor: UIColor {
-        return .black
+        if #available(iOS 13.0, *) {
+            return .label
+        } else {
+            return .black
+        }
     }
     
     /// The colour of UITableViewCell seperators
@@ -68,12 +84,20 @@ open class Theme: NSObject {
     
     /// The colour of the text for UILabel's throughout the app
     open var primaryLabelColor: UIColor {
-        return .black
+        if #available(iOS 13.0, *) {
+            return .label
+        } else {
+            return .black
+        }
     }
     
     /// The colour of the text for alternative UILabel's throughout the app
     open var secondaryLabelColor: UIColor {
-        return .lightGray
+        if #available(iOS 13.0, *) {
+            return .secondaryLabel
+        } else {
+            return .darkGray
+        }
     }
     
     /// The colour to be used for title text in a UINavigationBar
@@ -92,7 +116,7 @@ open class Theme: NSObject {
     
     /// A blue colour
     open var blueColor: UIColor {
-        return .blue
+        return .systemBlue
     }
     
     // A brown colour
@@ -117,12 +141,12 @@ open class Theme: NSObject {
     
     /// A gray colour
     open var grayColor: UIColor {
-        return .gray
+        return .systemGray
     }
     
     /// A green colour
     open var greenColor: UIColor {
-        return .green
+        return .systemGreen
     }
     
     /// A light gray colour
@@ -137,22 +161,22 @@ open class Theme: NSObject {
     
     /// An orange colour
     open var orangeColor: UIColor {
-        return .orange
+        return .systemOrange
     }
     
     // A purple colour
     open var purpleColor: UIColor {
-        return .purple
+        return .systemPurple
     }
     
     /// A red colour
     open var redColor: UIColor {
-        return .red
+        return .systemRed
     }
     
     /// A yellow colour
     open var yellowColor: UIColor {
-        return .yellow
+        return .systemYellow
     }
     
     /// A white colour

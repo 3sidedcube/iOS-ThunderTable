@@ -33,4 +33,28 @@ class ThunderTableTests: XCTestCase {
         }
     }
     
+    func testSectionIndexPathsCalculation() {
+        
+        let data = [
+            [TableRow(title: ""), TableRow(title: "")],
+            [],
+            [TableRow(title: ""), TableRow(title: ""), TableRow(title: ""), TableRow(title: "")],
+            [TableRow(title: "")]
+        ] as [Section]
+        
+        let indexPaths = data.indexPaths
+        
+        XCTAssertEqual(
+            indexPaths,
+            [
+                IndexPath(row: 0, section: 0),
+                IndexPath(row: 1, section: 0),
+                IndexPath(row: 0, section: 2),
+                IndexPath(row: 1, section: 2),
+                IndexPath(row: 2, section: 2),
+                IndexPath(row: 3, section: 2),
+                IndexPath(row: 0, section: 3)
+            ]
+        )
+    }
 }

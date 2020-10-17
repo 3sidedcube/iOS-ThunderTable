@@ -17,6 +17,8 @@
 		B114F1122035CC19005D52F2 /* InputPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */; };
 		B11CB8CF1F320DA600E58116 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CB8CE1F320DA600E58116 /* Extensions.swift */; };
 		B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11CEB79204977A2001308B3 /* CNContact+Row.swift */; };
+		B12D31092512385700274462 /* InputInlineDatePickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B12D31072512385700274462 /* InputInlineDatePickerViewCell.xib */; };
+		B12D310A2512385700274462 /* InputInlineDatePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12D31082512385700274462 /* InputInlineDatePickerViewCell.swift */; };
 		B14F945120444E820014F694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945020444E820014F694 /* AppDelegate.swift */; };
 		B14F945320444E820014F694 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F945220444E820014F694 /* ViewController.swift */; };
 		B14F945620444E820014F694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14F945420444E820014F694 /* Main.storyboard */; };
@@ -44,6 +46,12 @@
 		B1AD7EC31D8C194400BFCA34 /* InputSwitchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EC21D8C194400BFCA34 /* InputSwitchRow.swift */; };
 		B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7EC41D8C198F00BFCA34 /* InputSwitchViewCell.swift */; };
 		B1AD7EC71D8C198F00BFCA34 /* InputSwitchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */; };
+		B1B5C6D624FFCAAD00F05CE8 /* ScrollOffsetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6D424FFCAAD00F05CE8 /* ScrollOffsetManager.swift */; };
+		B1B5C6D724FFCAAD00F05CE8 /* ScrollOffsetManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6D524FFCAAD00F05CE8 /* ScrollOffsetManagable.swift */; };
+		B1B5C6DA24FFD6DB00F05CE8 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6D824FFD6DB00F05CE8 /* CollectionTableViewCell.swift */; };
+		B1B5C6DB24FFD6DB00F05CE8 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B5C6D924FFD6DB00F05CE8 /* CollectionTableViewCell.xib */; };
+		B1B5C6DD24FFDBED00F05CE8 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6DC24FFDBED00F05CE8 /* CollectionViewCell.swift */; };
+		B1B5C6DF24FFDC4000F05CE8 /* CollectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5C6DE24FFDC4000F05CE8 /* CollectionRow.swift */; };
 		B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */; };
 		B1B679621D89807A00B66FD8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B679601D89807A00B66FD8 /* TableViewCell.xib */; };
 		B1BAABCA22244B94007F0F61 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */; };
@@ -97,6 +105,8 @@
 		B114F1102035CC19005D52F2 /* InputPickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPickerViewCell.xib; sourceTree = "<group>"; };
 		B11CB8CE1F320DA600E58116 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B11CEB79204977A2001308B3 /* CNContact+Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CNContact+Row.swift"; sourceTree = "<group>"; };
+		B12D31072512385700274462 /* InputInlineDatePickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputInlineDatePickerViewCell.xib; sourceTree = "<group>"; };
+		B12D31082512385700274462 /* InputInlineDatePickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputInlineDatePickerViewCell.swift; sourceTree = "<group>"; };
 		B14F944E20444E810014F694 /* ThunderTableDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThunderTableDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B14F945020444E820014F694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B14F945220444E820014F694 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +138,12 @@
 		B1AD7EC21D8C194400BFCA34 /* InputSwitchRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSwitchRow.swift; sourceTree = "<group>"; };
 		B1AD7EC41D8C198F00BFCA34 /* InputSwitchViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSwitchViewCell.swift; sourceTree = "<group>"; };
 		B1AD7EC51D8C198F00BFCA34 /* InputSwitchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputSwitchViewCell.xib; sourceTree = "<group>"; };
+		B1B5C6D424FFCAAD00F05CE8 /* ScrollOffsetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollOffsetManager.swift; sourceTree = "<group>"; };
+		B1B5C6D524FFCAAD00F05CE8 /* ScrollOffsetManagable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollOffsetManagable.swift; sourceTree = "<group>"; };
+		B1B5C6D824FFD6DB00F05CE8 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
+		B1B5C6D924FFD6DB00F05CE8 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
+		B1B5C6DC24FFDBED00F05CE8 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		B1B5C6DE24FFDC4000F05CE8 /* CollectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRow.swift; sourceTree = "<group>"; };
 		B1B6795F1D89807A00B66FD8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B1B679601D89807A00B66FD8 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +212,7 @@
 			children = (
 				B11CEB79204977A2001308B3 /* CNContact+Row.swift */,
 				B1BAABCE22244C06007F0F61 /* CNContact+Section.swift */,
+				B1B5C6DE24FFDC4000F05CE8 /* CollectionRow.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,8 +222,18 @@
 			children = (
 				B1BAABCC22244BAF007F0F61 /* ContactTableViewCell.xib */,
 				B1BAABC822244B94007F0F61 /* ContactTableViewCell.swift */,
+				B1B5C6D824FFD6DB00F05CE8 /* CollectionTableViewCell.swift */,
+				B1B5C6D924FFD6DB00F05CE8 /* CollectionTableViewCell.xib */,
+				B1B5C6DC24FFDBED00F05CE8 /* CollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		B12D31062512347800274462 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		B14F944F20444E810014F694 /* ThunderTableDemo */ = {
@@ -248,6 +275,8 @@
 		B17BAA341D89639100844421 /* ThunderTable */ = {
 			isa = PBXGroup;
 			children = (
+				B12D31062512347800274462 /* Extensions */,
+				B1B5C6D324FFCA8C00F05CE8 /* Scroll Offset Caching */,
 				B1D10CD01DA540CF003FBCB4 /* Theme.swift */,
 				B19C53261D8B036600B30A35 /* ApplicationLoadingIndicatorManager.swift */,
 				B1E0883B1DA638B400E45E47 /* Images */,
@@ -289,6 +318,8 @@
 		B19C53211D8B02F600B30A35 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B12D31082512385700274462 /* InputInlineDatePickerViewCell.swift */,
+				B12D31072512385700274462 /* InputInlineDatePickerViewCell.xib */,
 				B1C2C56D1FFCF20F00D968C5 /* InputDatePickerViewCell.swift */,
 				B1C2C56E1FFCF20F00D968C5 /* InputDatePickerViewCell.xib */,
 				B114F10F2035CC19005D52F2 /* InputPickerViewCell.swift */,
@@ -303,6 +334,15 @@
 				B1784D851D8C3A8A007358EA /* InputSliderViewCell.xib */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		B1B5C6D324FFCA8C00F05CE8 /* Scroll Offset Caching */ = {
+			isa = PBXGroup;
+			children = (
+				B1B5C6D524FFCAAD00F05CE8 /* ScrollOffsetManagable.swift */,
+				B1B5C6D424FFCAAD00F05CE8 /* ScrollOffsetManager.swift */,
+			);
+			name = "Scroll Offset Caching";
 			sourceTree = "<group>";
 		};
 		B1E0883B1DA638B400E45E47 /* Images */ = {
@@ -454,6 +494,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1B5C6DB24FFD6DB00F05CE8 /* CollectionTableViewCell.xib in Resources */,
 				B14F945B20444E820014F694 /* LaunchScreen.storyboard in Resources */,
 				B14F945820444E820014F694 /* Assets.xcassets in Resources */,
 				B1BAABCD22244BAF007F0F61 /* ContactTableViewCell.xib in Resources */,
@@ -473,6 +514,7 @@
 				B108319E1F068FDF008B565D /* TableImageViewCell.xib in Resources */,
 				B1784D871D8C3A8A007358EA /* InputSliderViewCell.xib in Resources */,
 				B1EC80FF1FDE85EA00C8EE72 /* DefaultTableViewCell.xib in Resources */,
+				B12D31092512385700274462 /* InputInlineDatePickerViewCell.xib in Resources */,
 				B1C2C5701FFCF20F00D968C5 /* InputDatePickerViewCell.xib in Resources */,
 				B1A8983E2047117D0028CAE4 /* Value2TableViewCell.xib in Resources */,
 				B1AD7EC11D8BFC9D00BFCA34 /* InputTextViewCell.xib in Resources */,
@@ -495,7 +537,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1BAABCA22244B94007F0F61 /* ContactTableViewCell.swift in Sources */,
+				B1B5C6DA24FFD6DB00F05CE8 /* CollectionTableViewCell.swift in Sources */,
+				B1B5C6DF24FFDC4000F05CE8 /* CollectionRow.swift in Sources */,
 				B1BAABCF22244C06007F0F61 /* CNContact+Section.swift in Sources */,
+				B1B5C6DD24FFDBED00F05CE8 /* CollectionViewCell.swift in Sources */,
 				B14F945320444E820014F694 /* ViewController.swift in Sources */,
 				B14F945120444E820014F694 /* AppDelegate.swift in Sources */,
 				B11CEB9F20498F0C001308B3 /* CNContact+Row.swift in Sources */,
@@ -510,7 +555,9 @@
 				B17BAA581D89643800844421 /* TableSection.swift in Sources */,
 				B1784D831D8C3A60007358EA /* InputSliderRow.swift in Sources */,
 				B1C2C56C1FFCEE3100D968C5 /* InputDatePickerRow.swift in Sources */,
+				B12D310A2512385700274462 /* InputInlineDatePickerViewCell.swift in Sources */,
 				B1EC81021FDE86BF00C8EE72 /* SubtitleTableViewCell.swift in Sources */,
+				B1B5C6D724FFCAAD00F05CE8 /* ScrollOffsetManagable.swift in Sources */,
 				B1B679611D89807A00B66FD8 /* TableViewCell.swift in Sources */,
 				B1784D861D8C3A8A007358EA /* InputSliderViewCell.swift in Sources */,
 				B1C2C56F1FFCF20F00D968C5 /* InputDatePickerViewCell.swift in Sources */,
@@ -521,6 +568,7 @@
 				B114F10E2035CA75005D52F2 /* InputPickerRow.swift in Sources */,
 				B1EC81061FDE873700C8EE72 /* Value1TableViewCell.swift in Sources */,
 				B19C53241D8B033E00B30A35 /* InputTextFieldViewCell.swift in Sources */,
+				B1B5C6D624FFCAAD00F05CE8 /* ScrollOffsetManager.swift in Sources */,
 				B1EC80FE1FDE85EA00C8EE72 /* DefaultTableViewCell.swift in Sources */,
 				B1AD7EC61D8C198F00BFCA34 /* InputSwitchViewCell.swift in Sources */,
 				B1E0883D1DA638CE00E45E47 /* ImageView.swift in Sources */,
@@ -591,6 +639,7 @@
 				INFOPLIST_FILE = ThunderTableDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -613,6 +662,7 @@
 				INFOPLIST_FILE = ThunderTableDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3sidedcube.ThunderTableDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -752,7 +802,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.3.5;
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -777,7 +827,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.3.5;
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.threesidedcube.ThunderTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

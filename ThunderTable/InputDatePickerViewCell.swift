@@ -8,20 +8,31 @@
 
 import UIKit
 
+/// A `TableViewCell` subclass with an image, title label, and a text field aligned horizontally
+///
+/// This cell subclass allows the user to pick a date using a `UIDatePicker`set as the text field's
+/// `inputView`, meaning it shows in-place of the default iOS keyboard
 open class InputDatePickerViewCell: TableViewCell {
-
-    @IBOutlet weak public var textField: UITextField!
-	
-	public var datePicker = UIDatePicker()
-	
-	internal var dateFormatter: DateFormatter = DateFormatter()
+    
+    public var inputTextField: UITextField? {
+        return textField
+    }
+    
+    /// The text field allowing the user to enter a date
+    @IBOutlet weak public var textField: UITextField?
+    
+    /// The date picker the user uses to pick the date
+    @IBOutlet public var datePicker: UIDatePicker? = UIDatePicker()
+    
+    /// The date formatter used to format the date displayed in `textField`
+	public var dateFormatter: DateFormatter? = DateFormatter()
 		
     override open func becomeFirstResponder() -> Bool {
-        return textField.becomeFirstResponder()
+        return textField?.becomeFirstResponder() ?? false
     }
     
     override open func resignFirstResponder() -> Bool {
-        return textField.resignFirstResponder()
+        return textField?.resignFirstResponder() ?? false
     }
 	
 	open override func awakeFromNib() {
@@ -38,15 +49,15 @@ open class InputDatePickerViewCell: TableViewCell {
 			UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(handleDone(sender:)))
 		]
 		
-		textField.inputView = datePicker
-		textField.inputAccessoryView = doneToolbar
+		textField?.inputView = datePicker
+		textField?.inputAccessoryView = doneToolbar
 	}
 	
 	@objc private func handleDone(sender: UIBarButtonItem) {
-		textField.resignFirstResponder()
+		textField?.resignFirstResponder()
 	}
-	
-	@objc func updateLabel(sender: UIDatePicker) {
-		textField.text = dateFormatter.string(from: sender.date)
-	}
+    
+    @objc public func updateInputTextFieldText(sender: UIDatePicker) {
+        textField?.text = dateFormatter?.string(from: sender.date)
+    }
 }

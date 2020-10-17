@@ -10,6 +10,8 @@ import Foundation
 
 extension TableViewController {
     
+    //MARK: - Subscript Functions
+    
     public subscript (index: IndexPath) -> (section: Section, row: Row)? {
         
         guard index.section < data.count else {
@@ -35,5 +37,16 @@ extension TableViewController {
         }
         
         return data[index.section]
+    }
+    
+    /// forEach Array equivalant for looping across all sections and rows of current `data`
+    /// - Parameter body: A closure that takes each row, indexPath and section as the parameters.
+    public func forEachRow(_ body: (Row, IndexPath, Section) -> Void) {
+        
+        data.enumerated().forEach { (sectionIndex, section) in
+            section.rows.enumerated().forEach { (rowIndex, row) in
+                body(row, IndexPath(row: rowIndex, section: sectionIndex), section)
+            }
+        }
     }
 }

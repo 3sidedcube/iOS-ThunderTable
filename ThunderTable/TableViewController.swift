@@ -113,6 +113,10 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
     
     open var data: [Section] {
         set {
+            // If the table view has had rows removed/added
+            if newValue.indexPaths != data.indexPaths {
+                resetEmbeddedScrollOffsets()
+            }
             _data = newValue
             tableView.reloadData()
         }
@@ -120,7 +124,8 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             return _data
         }
     }
-	
+    
+    /// The currently selected index path of the table view
 	public var selectedIndexPath: IndexPath?
 	
 	public var selectedRows: [Row]? {
@@ -310,18 +315,40 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
             size = imageSize
         }
         
-        imageView?.set(imageURL: row.imageURL, withPlaceholder: row.image, imageSize: size, animated: true, completion: { [weak self] (image, error) -> (Void) in
+        // Only load image from url if we have an image url
+        if let imageURL = row.imageURL {
             
-            if let welf = self, _row.image == nil {
+            imageView?.set(imageURL: imageURL, withPlaceholder: row.image, imageSize: size, animated: true, completion: { [weak self] (image, error) -> (Void) in
+                
+                guard let self = self else { return }
+                guard let image = image, _row.image == nil else { return }
                 _row.image = image
-                welf.tableView.reloadRows(at: [indexPath], with: .none)
-            }
-        })
+                // Try and find matching index paths with the same imageURL and reload it.
+                // We can't use `indexPath` provided to this function as it may have changed!
+                self.reloadRows(where: { $0.imageURL == imageURL })
+            })
+        }
 		
 		textLabel?.paragraphStyle = ThemeManager.shared.theme.cellTitleParagraphStyle
 		detailLabel?.paragraphStyle = ThemeManager.shared.theme.cellDetailParagraphStyle
+        
+        updateScrollPosition(cell: cell, at: indexPath)
 		
         row.configure(cell: cell, at: indexPath, in: self)
+    }
+    
+    /// Reloads all table rows where the row matches a certain predicate
+    /// - Parameter predicate: The predicate to match rows based on
+    /// - Parameter animation: The animation to run when reloading
+    public func reloadRows(where predicate: (Row) -> Bool, with animation: UITableView.RowAnimation = .none) {
+        
+        var indexPathsToReload: [IndexPath] = []
+        self.forEachRow { (row, indexPath, _) in
+            guard predicate(row) else { return }
+            indexPathsToReload.append(indexPath)
+        }
+        guard !indexPathsToReload.isEmpty else { return }
+        self.tableView.reloadRows(at: indexPathsToReload, with: animation)
     }
     
     private func register(row: Row) {
@@ -589,6 +616,56 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         return row.previewForHighlightingContextMenu(with: configuration, at: indexPath, in: tableView) ?? section.sectionPreviewForHighlightingContextMenu(with: configuration, at: indexPath, in: tableView)
     }
 	
+    
+    //MARK: -
+    //MARK: Scroll Offset Management
+    //MARK:
+    
+    private let scrollOffsetManager: ScrollOffsetManager = ScrollOffsetManager()
+    
+    /// Whether the table view should keep track of scroll view positions within it's cells.
+    /// This allows us to prevent re-use issues with re-using cells that the user has scrolled.
+    /// To allow your cell's scroll position to be remembered you need to implement the `ScrollOffsetManagable`
+    /// protocol on your `UITableViewCell` subclass.
+    /// - Note: This will not handle re-ordering of cells at present, and if the length of your
+    /// data changes (different numbers of rows in any section, or different number of sections)
+    /// then the cached values will be reset. This may be improved in future if we decide to enforce
+    /// row's being `Equatable`.
+    public var rememberEmbeddedScrollPositions: Bool = true
+    
+    /// Resets all the "remembered" scroll offsets back to `.zero` for all embedded scrollable cells
+    /// that conform to `ScrollOffsetManagable`.
+    ///
+    /// - Note: This will not actually perform any scrolling on the visible cells (Based on the value provided in `scrollVisibleCells`,
+    /// but they will reset to `.zero` the next time that `cellForRow:` is called regardless of the value provided.
+    /// - Parameter scrollVisibleCells: Whether to scroll the visible cells as well as resetting the cache. Defaults to `false`
+    /// - Parameter animated: If `scrollVisibleCells == true`, whether we should animate the transition. Defaults to `false`
+    public func resetEmbeddedScrollOffsets(scrollingVisibleCells: Bool = false, animated: Bool = false) {
+        scrollOffsetManager.resetAllOffsets()
+        guard scrollingVisibleCells else { return }
+        tableView.visibleCells.forEach { (cell) in
+            guard let scrollable = cell as? ScrollOffsetManagable else { return }
+            scrollable.scrollView?.setContentOffset(.zero, animated: animated)
+        }
+    }
+    
+    /// Updates the scroll position for the given cell, storing it in `scrollOffsetManager` and actually setting the contentOffset
+    /// - Parameters:
+    ///   - cell: The cell to update scroll for
+    ///   - indexPath: The index path that the cell is at
+    ///   - animated: Whether to animate the setting of scroll offset
+    func updateScrollPosition(cell: UITableViewCell, at indexPath: IndexPath, animated: Bool = false) {
+        
+        guard rememberEmbeddedScrollPositions, let scrollable = cell as? ScrollOffsetManagable else { return }
+        
+        // Set the identifier on the scrollable so it can be tracked. Use `indexPath` for this
+        scrollable.identifier = indexPath
+        // Register the scrollable so it's offset is tracked
+        scrollOffsetManager.register(scrollable: scrollable)
+        // Set the scroll offset based on `scrollOffsetManager`. This fixes scroll re-use issues.
+        scrollOffsetManager.setScrollOffset(scrollable, animated: animated, fallback: .zero)
+    }
+    
 	//MARK - variable header/footer size
 	
 	private var headerTranslatesAutoResizingMask: Bool = false
