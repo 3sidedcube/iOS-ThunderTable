@@ -27,7 +27,7 @@ class ViewController: TableViewController {
         
         super.viewDidLoad()
         
-        data = [basicsSection(), protocolSection(), contact1, inputSection(), customSection(), actionsSection(), contextMenuSection(), collectionScrollReuseSection()].reversed()
+        data = [basicsSection(), protocolSection(), contact1, inputSection(), customSection(), actionsSection(), contextMenuSection(), collectionScrollReuseSection()]
     }
     
     private func contextMenuSection() -> TableSection {
