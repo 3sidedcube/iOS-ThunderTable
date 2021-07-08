@@ -1,6 +1,6 @@
 # Thunder Table
 
-[![Build Status](https://travis-ci.org/3sidedcube/ThunderTable.svg)](https://travis-ci.org/3sidedcube/ThunderTable) [![Swift 5.3.2](http://img.shields.io/badge/swift-5.3.2-brightgreen.svg)](https://swift.org/blog/swift-5-3-released/) [![Apache 2](https://img.shields.io/badge/license-Apache%202-brightgreen.svg)](LICENSE.md)
+[![Build Status](https://travis-ci.org/3sidedcube/ThunderTable.svg)](https://travis-ci.org/3sidedcube/ThunderTable) [![Swift 5.4](http://img.shields.io/badge/swift-5.4-brightgreen.svg)](https://swift.org/blog/swift-5-4-released/) [![Apache 2](https://img.shields.io/badge/license-Apache%202-brightgreen.svg)](LICENSE.md)
 
 Thunder Table is a useful framework which enables quick and easy creation of table views in iOS, making the process of creating complex tables as simple as a few lines of code; and removing the necessity for having long chains of index paths and if statements.
 
@@ -22,7 +22,7 @@ Setting up your app to use ThunderTable is a simple and quick process. You can c
 
 ## Carthage
 
-- Add `github "3sidedcube/ThunderTable" == 1.6.1` to your Cartfile.
+- Add `github "3sidedcube/ThunderTable" == 1.7.0` to your Cartfile.
 - Run `carthage update --platform ios` to fetch the framework.
 - Drag `ThunderTable` into your project's _Linked Frameworks and Libraries_ section from the `Carthage/Build` folder.
 - Add the Build Phases script step as defined [here](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos).

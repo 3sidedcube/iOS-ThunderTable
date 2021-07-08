@@ -10,7 +10,7 @@ import UIKit
 
 /// A simpler version of `UIScrollViewDelegate` so we don't intefere
 /// with users `UIScrollViewDelegate` implementations
-public protocol ScrollOffsetDelegate: class {
+public protocol ScrollOffsetDelegate: AnyObject {
     
     /// Called when the content offset of the scroll view changes due to `scrollViewDidScroll`
     /// - Parameters:
@@ -20,7 +20,7 @@ public protocol ScrollOffsetDelegate: class {
 
 /// A protocol implemented to allow control and listening to scroll view offset changes
 /// by `ScrollOfffsetManager`
-public protocol ScrollOffsetManagable: class {
+public protocol ScrollOffsetManagable: AnyObject {
     
     /// The scroll view that is controllable on the object
     var scrollView: UIScrollView? { get }

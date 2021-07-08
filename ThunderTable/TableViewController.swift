@@ -118,12 +118,18 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
                 resetEmbeddedScrollOffsets()
             }
             _data = newValue
+            guard reloadDataOnDataDidSet else { return }
             tableView.reloadData()
         }
         get {
             return _data
         }
     }
+
+    /// When `true`, execute `tableView.reloadData()` on `didSet` of `data`.
+    /// Subclasses which set this to `false` should handle the reloading of the `tableView` `Section`s
+    /// and `Row`s itself.
+    open var reloadDataOnDataDidSet = true
     
     /// The currently selected index path of the table view
 	public var selectedIndexPath: IndexPath?
@@ -349,6 +355,18 @@ open class TableViewController: UITableViewController, UIContentSizeCategoryAdju
         }
         guard !indexPathsToReload.isEmpty else { return }
         self.tableView.reloadRows(at: indexPathsToReload, with: animation)
+    }
+
+    /// Execute `closure` with `reloadDataOnDataDidSet` set to `false`.
+    /// Return `reloadDataOnDataDidSet` to it's previous value when closure returns
+    ///
+    /// - Parameter closure: Functionality to execute
+    open func withoutReloading(closure: () -> Void) {
+        let valueBefore = reloadDataOnDataDidSet
+
+        reloadDataOnDataDidSet = false
+        closure()
+        reloadDataOnDataDidSet = valueBefore
     }
     
     private func register(row: Row) {
